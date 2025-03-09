@@ -1,0 +1,34 @@
+.symbolsView__cards {
+    background:  #E2E2E4;
+    flex: 1;
+    height: 100%;
+    overflow-y: auto;
+    border-radius: var(--borderRadius);
+}
+
+.symbolsView__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    @media screen and (min-width: 1024px) {
+        flex-direction: row-reverse;
+    }
+}
+
+.symbolsView__chart {
+    width: 100%;
+    @media screen and (min-width: 1024px) {
+        width: 400px;
+    }
+}
+
+.symbolsView {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex: 1;
+    overflow-y: hidden;
+}

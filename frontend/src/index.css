@@ -16,6 +16,8 @@
   --colorDark: #0e1120;
   --colorWhite: #fdfdfd;
 
+  --borderRadius: 4px;
+
   color: var(--colorDark);
 }
 

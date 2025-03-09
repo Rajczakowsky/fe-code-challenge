@@ -1,7 +1,8 @@
 .symbolCard {
-  border: 2px solid black; /* just for visibility, feel free to remove it */
-  margin: 10px; /* just for visibility, feel free to remove it */
+  margin: 0.6rem; /* just for visibility, feel free to remove it */
   padding: 10px; /* just for visibility, feel free to remove it */
+  background: var(--colorWhite);
+  border-radius: var(--borderRadius);
 }
 
 .symbolCard__shake {
