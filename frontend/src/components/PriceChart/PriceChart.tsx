@@ -1,14 +1,18 @@
-import { useEffect } from 'react';
-import './priceChart.css';
-import { Line, LineChart, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+import Loading from '@/components/Loading';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
 import { fetchPriceHistory, selectors } from '@/store/priceHistorySlice';
-import Loading from '@/components/Loading';
+import { useEffect } from 'react';
+import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
+import './priceChart.css';
+
 type PriceChartProps = {
   symbolId: string | null;
 };
 
-const PriceChart = ({ symbolId }: PriceChartProps) => {
+const PriceChart = () => {
+  const apiState = useAppSelector(selectors.apiState);
+  const symbolId = useAppSelector((state) => state.store.activeSymbol);
+
   const dispatch = useAppDispatch();
   useEffect(() => {
     if (symbolId) {
@@ -16,7 +20,6 @@ const PriceChart = ({ symbolId }: PriceChartProps) => {
     }
   }, [dispatch, symbolId]);
 
-  const apiState = useAppSelector(selectors.apiState);
   const data = useAppSelector(selectors.selectPriceHistory);
   const symbolInfo = useAppSelector(selectors.selectSymbolInfo);
 
