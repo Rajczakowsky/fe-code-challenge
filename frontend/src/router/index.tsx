@@ -1,16 +1,24 @@
-import SymbolsView from '@/components/SymbolsView';
-import { Route, Routes, Navigate } from 'react-router-dom';
-import StatementsView from "@/components/StatementsView";
-import ProfileView from "@/components/ProfileView";
+import Loading from '@/components/Loading';
+import { lazy, Suspense } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+const SymbolsView = lazy(() => import('@/components/SymbolsView'));
+const StatementsView = lazy(() => import('@/components/StatementsView'));
+const ProfileView = lazy(() => import('@/components/ProfileView'));
 
 const Router = () => {
+  const renderWithSuspense = (Component: React.ComponentType): JSX.Element => (
+    <Suspense fallback={<Loading />}>
+      <Component />
+    </Suspense>
+  );
+
   return (
-      <Routes>
-        <Route index element={<SymbolsView />} />
-        <Route index path="profile" element={<ProfileView />} />
-        <Route index path="statements" element={<StatementsView />} />
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
+    <Routes>
+      <Route index element={renderWithSuspense(SymbolsView)} />
+      <Route path="profile" element={renderWithSuspense(ProfileView)} />
+      <Route path="statements" element={renderWithSuspense(StatementsView)} />
+      <Route path="*" element={<Navigate to="/" />} />
+    </Routes>
   );
 };
 
