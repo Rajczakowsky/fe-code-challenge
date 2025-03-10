@@ -5,19 +5,20 @@ import { useEffect } from 'react';
 import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from 'recharts';
 import './priceChart.css';
 
-type PriceChartProps = {
-  symbolId: string | null;
-};
-
 const PriceChart = () => {
   const apiState = useAppSelector(selectors.apiState);
   const symbolId = useAppSelector((state) => state.store.activeSymbol);
 
   const dispatch = useAppDispatch();
   useEffect(() => {
+    let fatchCall = null;
     if (symbolId) {
-      dispatch(fetchPriceHistory(symbolId));
+      fatchCall = dispatch(fetchPriceHistory(symbolId));
     }
+
+    return () => {
+      fatchCall && fatchCall.abort();
+    };
   }, [dispatch, symbolId]);
 
   const data = useAppSelector(selectors.selectPriceHistory);
