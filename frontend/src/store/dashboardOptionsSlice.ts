@@ -17,13 +17,13 @@ export const dashboardOptionsSlice = createSlice({
     toggleShowCardInfo: (state) => {
       state.showCardInfo = !state.showCardInfo;
     },
-    setAtiveSymbol: (state, action) => {
+    setActiveSymbol: (state, action) => {
       state.activeSymbol = action.payload;
     }
   }
 });
 
-export const { toggleShowCardInfo, setAtiveSymbol } = dashboardOptionsSlice.actions;
+export const { toggleShowCardInfo, setActiveSymbol } = dashboardOptionsSlice.actions;
 
 export const selectShowCardInfo = (state: { store: StoreState }) => state.store.showCardInfo;
 
