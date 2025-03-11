@@ -6,19 +6,15 @@ const StatementsView = lazy(() => import('@/components/StatementsView'));
 const ProfileView = lazy(() => import('@/components/ProfileView'));
 
 const Router = () => {
-  const renderWithSuspense = (Component: React.ComponentType): JSX.Element => (
-    <Suspense fallback={<Loading />}>
-      <Component />
-    </Suspense>
-  );
-
   return (
-    <Routes>
-      <Route index element={renderWithSuspense(SymbolsView)} />
-      <Route path="profile" element={renderWithSuspense(ProfileView)} />
-      <Route path="statements" element={renderWithSuspense(StatementsView)} />
-      <Route path="*" element={<Navigate to="/" />} />
-    </Routes>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route index element={<SymbolsView />} />
+        <Route path="profile" element={<ProfileView />} />
+        <Route path="statements" element={<StatementsView />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Suspense>
   );
 };
 
