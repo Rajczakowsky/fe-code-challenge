@@ -1,63 +1,51 @@
-import { ReactComponent as CompanyIcon } from '@/assets/company.svg';
-import downTrendIcon from '@/assets/down.png';
-import { ReactComponent as IndustryIcon } from '@/assets/industry.svg';
-import { ReactComponent as MarketCapIcon } from '@/assets/market_cap.svg';
-import upTrendIcon from '@/assets/up.png';
-import ListItem from '@/components/ListItem';
+import usePriceStateClasses from '@/components/SymbolCard/src/usePriceStateClasses';
+import useSymbolCardClasses from '@/components/SymbolCard/src/useSelectionClasses';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { formatCurrencyCompact, formatPrice } from '@/lib';
-import { setAtiveSymbol } from '@/store/dashboardOptionsSlice';
-
+import { formatPrice } from '@/lib';
+import { setActiveSymbol } from '@/store/dashboardOptionsSlice';
+import { memo } from 'react';
+import SymbolCardHeading from './src/SymbolCardHeading';
+import SymbolCardInfo from './src/SymbolCardInfo';
 import './symbolCard.css';
-
 type SymbolCardProps = {
   id: string;
-  price: number;
 };
 
-const SymbolCard = ({ id, price }: SymbolCardProps) => {
+const SymbolCard = ({ id }: SymbolCardProps) => {
+  const price = useAppSelector((state) => state.prices[id]);
   const { trend, companyName, industry, marketCap } = useAppSelector(
     (state) => state.stocks.entities[id]
   );
+  const { activeSymbol } = useAppSelector((state) => state.store);
   const { showCardInfo } = useAppSelector((state) => state.store);
+
   const dispatch = useAppDispatch();
 
-  const handleOnClick = () => {
-    dispatch(setAtiveSymbol(id));
-  };
-  return (
-    <div onClick={handleOnClick} className="symbolCard">
-      <div className="symbolCard__header">
-        {id} - {trend}
-        {trend && (
-          <div className="symbolCard__marker">
-            {trend === 'UP' ? (
-              <img src={upTrendIcon} width={40} height={40} />
-            ) : (
-              <img src={downTrendIcon} width={40} height={40} />
-            )}
-          </div>
-        )}
-      </div>
+  const isSelected = activeSymbol === id;
 
+  const priceStateClasses = usePriceStateClasses(price);
+  const selectionStateClasses = useSymbolCardClasses(activeSymbol, id);
+
+  const handleOnClick = () => {
+    dispatch(setActiveSymbol(activeSymbol && isSelected ? undefined : id));
+  };
+
+  return (
+    <div
+      onClick={handleOnClick}
+      className={`symbolCard ${priceStateClasses} ${selectionStateClasses}`}
+    >
+      <SymbolCardHeading id={id} trend={trend} />
       <div className="symbolCard__content">
         <div className="symbolCard__price">
           <div className="symbolCard__price-label">Price: </div>
-          <div className="symbolCard__price-value">{price ? formatPrice(price) : '--'} </div>
+          <div className="symbolCard__price-value">{price ? formatPrice(price) : '--'}</div>
         </div>
         {showCardInfo && (
-          <>
-            <ListItem Icon={<CompanyIcon />} spacing={'space-between'} label={companyName} />
-            <ListItem Icon={<IndustryIcon />} spacing={'space-between'} label={industry} />
-            <ListItem
-              Icon={<MarketCapIcon />}
-              spacing={'space-between'}
-              label={formatCurrencyCompact(marketCap)}
-            />
-          </>
+          <SymbolCardInfo companyName={companyName} industry={industry} marketCap={marketCap} />
         )}
       </div>
     </div>
   );
 };
-export default SymbolCard;
+export default memo(SymbolCard);
