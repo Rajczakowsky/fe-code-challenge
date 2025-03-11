@@ -1,9 +1,9 @@
 import usePriceStateClasses from '@/components/SymbolCard/src/usePriceStateClasses';
 import useSymbolCardClasses from '@/components/SymbolCard/src/useSelectionClasses';
 import { useAppDispatch, useAppSelector } from '@/hooks/redux';
-import { formatPrice } from '@/lib';
 import { setActiveSymbol } from '@/store/dashboardOptionsSlice';
 import { memo } from 'react';
+import { formatPrice } from './src/formatPrice';
 import SymbolCardHeading from './src/SymbolCardHeading';
 import SymbolCardInfo from './src/SymbolCardInfo';
 import './symbolCard.css';
