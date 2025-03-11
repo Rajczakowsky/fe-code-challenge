@@ -1,9 +1,10 @@
 .symbolsView__cards {
     background:  #E2E2E4;
     flex: 1;
-    height: 100%;
     overflow-y: auto;
     border-radius: var(--borderRadius);
+    display: flex;
+    flex-direction: column;
 }
 
 .symbolsView__content {
