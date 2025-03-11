@@ -1,0 +1,14 @@
+.symbolsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    padding: 0.6rem;
+}
+
+.symbolsGrid__card--open {
+    height: var(--cardOpenHeight);
+}
+
+.symbolsGrid__card--closed {
+    height: var(--cardClosedHeight);
+}
+

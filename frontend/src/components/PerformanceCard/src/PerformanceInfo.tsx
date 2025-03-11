@@ -1,6 +1,6 @@
+import formatSymbolChange from '@/components/PerformanceCard/src/formatSymbolChange';
 import { memo } from 'react';
 import './performanceInfo.css';
-import formatSymbolChange from '@/components/PerformanceCard/src/formatSymbolChange';
 
 type PerformanceCardProps = {
   label: string;

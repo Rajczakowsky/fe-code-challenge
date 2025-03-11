@@ -1,0 +1,14 @@
+.symbolCard__heading {
+    background: var(--colorDark);
+    color: white;
+    padding: 0.2rem .4rem;
+    font-weight: 600;
+    border-top-right-radius: var(--borderRadius);
+    border-top-left-radius: var(--borderRadius);
+  }
+
+  .symbolCard__marker {
+    position: absolute;
+    top: -16px;
+    right: -16px
+  }
