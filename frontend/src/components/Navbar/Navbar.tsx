@@ -1,7 +1,9 @@
-import './Navbar.css';
+import NavLinkItem from '@/components/Navbar/src/NavLinkItem';
 import ToggleCardInfo from '@/components/Navbar/src/ToggleCardInfo';
 import routes from '@/components/Navbar/src/routes';
-import NavLinkItem from '@/components/Navbar/src/NavLinkItem';
+import { memo } from 'react';
+import './Navbar.css';
+
 const Navbar = () => {
   return (
     <nav>
@@ -15,4 +17,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default memo(Navbar);
