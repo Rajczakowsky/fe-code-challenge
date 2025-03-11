@@ -10,7 +10,7 @@ const SymbolsView = () => {
 
       <div className="symbolsView__content">
         <div className="symbolsView__chart">
-          <h3>PRICE HISTORY</h3>
+          <h3 className='symbolsView__chart-title'>PRICE HISTORY</h3>
           <PriceChart />
         </div>
         <div className="symbolsView__cards">

@@ -15,8 +15,13 @@
   --colorSecondary: #f2f3f3;
   --colorDark: #0e1120;
   --colorWhite: #fdfdfd;
+  --colorSuccess: #509737;
+  --colorError: #c53f3f;
 
   --borderRadius: 4px;
+   
+  --cardOpenHeight: 200px;
+  --cardClosedHeight: 100px;
 
   color: var(--colorDark);
 }
