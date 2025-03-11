@@ -1,2 +1,4 @@
+import { memo } from 'react';
+
 import PriceChart from './PriceChart';
-export default PriceChart;
+export default memo(PriceChart);
